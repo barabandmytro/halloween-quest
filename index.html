@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тест-Загадка</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #1a0b2e 0%,
+          #2d1654 50%,
+          #ff6b35 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body::before {
+        content: '🎃 👻 🦇 🕷️ 🎃 👻 🦇 🕷️ 🎃 👻';
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+        opacity: 0.3;
+        animation: float 20s infinite linear;
+      }
+
+      body::after {
+        content: '🕸️ 🕷️ 🦇 👻 🎃 🕸️ 🕷️ 🦇 👻 🎃';
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+        opacity: 0.3;
+        animation: float 25s infinite linear reverse;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      .container {
+        background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 600px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(255, 107, 53, 0.4),
+          0 0 40px rgba(138, 43, 226, 0.3);
+        border: 3px solid #ff6b35;
+        position: relative;
+      }
+
+      .container::before {
+        content: '🕸️';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        font-size: 60px;
+      }
+
+      .container::after {
+        content: '🕸️';
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        font-size: 60px;
+      }
+
+      h1 {
+        color: #ff6b35;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 28px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(255, 107, 53, 0.6);
+      }
+
+      .question {
+        background: linear-gradient(135deg, #2d1654 0%, #1a0b2e 100%);
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        border-left: 5px solid #ff6b35;
+        line-height: 1.8;
+        font-size: 18px;
+        color: #f0f0f0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      input[type='text'] {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        border: 2px solid #ff6b35;
+        border-radius: 10px;
+        transition: all 0.3s;
+        background: #1a1a1a;
+        color: #f0f0f0;
+      }
+
+      input[type='text']:focus {
+        outline: none;
+        border-color: #ff6b35;
+        box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-bottom: 15px;
+      }
+
+      .check-btn {
+        background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .check-btn:hover {
+        background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(255, 107, 53, 0.6);
+      }
+
+      .hint-btn {
+        background: linear-gradient(135deg, #8a2be2 0%, #9d4edd 100%);
+        color: white;
+        display: none;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .hint-btn:hover {
+        background: linear-gradient(135deg, #9d4edd 0%, #8a2be2 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(138, 43, 226, 0.6);
+      }
+
+      .message {
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        display: none;
+      }
+
+      .error {
+        background: linear-gradient(135deg, #1a0b2e 0%, #2d1654 100%);
+        color: #ff6b35;
+        border: 2px solid #ff6b35;
+      }
+
+      .success {
+        background: linear-gradient(135deg, #1a0b2e 0%, #2d1654 100%);
+        color: #8a2be2;
+        border: 2px solid #8a2be2;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        75% {
+          transform: translateX(10px);
+        }
+      }
+
+      .shake {
+        animation: shake 0.5s;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .bounce {
+        animation: bounce 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔔 Тест-Загадка 🔔</h1>
+
+      <div class="question">
+        Мене бояться всі, хто не виконав домашнє завдання. Я вимагаю дисципліни
+        і тиші. Я завжди там, де закінчується пара і починається нова.
+      </div>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="answer"
+          placeholder="Введіть вашу відповідь..."
+          autocomplete="off"
+        />
+      </div>
+
+      <button class="check-btn" onclick="checkAnswer()">
+        Перевірити відповідь
+      </button>
+      <button class="hint-btn" id="hintBtn" onclick="showHint()">
+        Отримати підказку
+      </button>
+
+      <div class="message" id="message"></div>
+    </div>
+
+    <script>
+      const correctAnswers = ['дзвінок', 'дзвоник', 'звоник', 'звонок'];
+
+      function checkAnswer() {
+        const userAnswer = document
+          .getElementById('answer')
+          .value.trim()
+          .toLowerCase();
+        const messageDiv = document.getElementById('message');
+        const container = document.querySelector('.container');
+
+        if (userAnswer === '') {
+          return;
+        }
+
+        if (correctAnswers.includes(userAnswer)) {
+          messageDiv.className = 'message success bounce';
+          messageDiv.style.display = 'block';
+          messageDiv.textContent =
+            'Вітаємо! Відповідь правильна, натисніть на кнопку "Отримати підказку"';
+          document.getElementById('hintBtn').style.display = 'block';
+          document.getElementById('answer').disabled = true;
+          document.querySelector('.check-btn').disabled = true;
+        } else {
+          messageDiv.className = 'message error shake';
+          messageDiv.style.display = 'block';
+          messageDiv.textContent = 'Відповідь неправильна, спробуй ще';
+          container.classList.add('shake');
+          setTimeout(() => {
+            container.classList.remove('shake');
+          }, 500);
+        }
+      }
+
+      function showHint() {
+        window.open('pidkazka.html', '_blank');
+      }
+
+      // Можливість відправити відповідь натисканням Enter
+      document
+        .getElementById('answer')
+        .addEventListener('keypress', function (event) {
+          if (event.key === 'Enter') {
+            checkAnswer();
+          }
+        });
+    </script>
+  </body>
+</html>

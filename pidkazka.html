@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Підказка</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #1a0b2e 0%,
+          #2d1654 50%,
+          #ff6b35 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body::before {
+        content: '🎃 👻 🦇 🕷️ 🎃 👻 🦇 🕷️ 🎃 👻';
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+        opacity: 0.3;
+        animation: float 20s infinite linear;
+      }
+
+      body::after {
+        content: '🕸️ 🕷️ 🦇 👻 🎃 🕸️ 🕷️ 🦇 👻 🎃';
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+        opacity: 0.3;
+        animation: float 25s infinite linear reverse;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      .container {
+        background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 800px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(255, 107, 53, 0.4),
+          0 0 40px rgba(138, 43, 226, 0.3);
+        text-align: center;
+        border: 3px solid #ff6b35;
+        position: relative;
+      }
+
+      .container::before {
+        content: '🕸️';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        font-size: 60px;
+      }
+
+      .container::after {
+        content: '🕸️';
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        font-size: 60px;
+      }
+
+      h1 {
+        color: #ff6b35;
+        margin-bottom: 30px;
+        font-size: 32px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(255, 107, 53, 0.6);
+      }
+
+      .hint-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        margin-bottom: 30px;
+        border: 3px solid #ff6b35;
+      }
+
+      .message {
+        font-size: 18px;
+        color: #f0f0f0;
+        line-height: 1.6;
+        padding: 20px;
+        background: linear-gradient(135deg, #2d1654 0%, #1a0b2e 100%);
+        border-radius: 10px;
+        border-left: 5px solid #8a2be2;
+      }
+
+      .note {
+        margin-top: 20px;
+        padding: 15px;
+        background: linear-gradient(135deg, #2d1654 0%, #1a0b2e 100%);
+        border-radius: 10px;
+        color: #ff6b35;
+        font-size: 14px;
+        border: 2px solid #ff6b35;
+      }
+
+      img {
+        width: 300px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎉 Підказка 🎉</h1>
+
+      <!-- Сюди завантажте своє зображення -->
+      <img src="tip.jpg" alt="Підказка" class="hint-image" />
+
+      <div class="message">Друге Видіння Жаху знаходиться за цим вікном</div>
+
+      <!-- <div class="note">
+            <strong>Примітка:</strong> Замініть "your-image.jpg" на назву вашого файлу зображення. 
+            Помістіть зображення в ту ж папку, що й цей HTML файл.
+        </div> -->
+    </div>
+  </body>
+</html>
